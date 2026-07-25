@@ -1,6 +1,7 @@
 class Solution {
     public int maxProduct(int n) {
 
+            if(n<100)return (n/10)*(n%10);
      
      ArrayList<Integer> l = new ArrayList<>();
 
