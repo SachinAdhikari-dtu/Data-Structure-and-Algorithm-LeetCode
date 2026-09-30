@@ -13,8 +13,8 @@ class Solution {
         return Math.max(l,r);
     }
     public int lengthOfLIS(int[] nums) {
-        int dp[][]=new int[nums.length+1][nums.length+1];
-        for(int i= 0 ; i <= nums.length ; i++){
+        int dp[][]=new int[nums.length][nums.length];
+        for(int i= 0 ; i < nums.length ; i++){
             Arrays.fill(dp[i],-1);
         }
         return lis(nums,0,-1,dp);
