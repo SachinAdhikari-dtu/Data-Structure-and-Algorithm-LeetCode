@@ -2,6 +2,7 @@
 class Solution {
     public void helper(TreeNode root , int k , ArrayList<Integer> l ){
         if(root==null)return;
+        if(l.size() ==k)return;
         helper(root.left,k,l);
         l.add(root.val);
         helper(root.right,k,l);
