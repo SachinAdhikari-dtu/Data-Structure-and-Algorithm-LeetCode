@@ -1,38 +1,14 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
+
 class Solution {
-    public static void helper(TreeNode root , int k ,PriorityQueue<Integer> q  ){
+    public void helper(TreeNode root , int k , ArrayList<Integer> l ){
         if(root==null)return;
-        if(q.size()< k){
-            q.offer(root.val);
-        }else{
-            if(q.peek() >  root.val){
-                q.poll();
-                q.offer(root.val);
-            }
-        }
-
-        helper(root.left,k,q);
-        helper(root.right,k,q);
-
+        helper(root.left,k,l);
+        l.add(root.val);
+        helper(root.right,k,l);
     }
     public int kthSmallest(TreeNode root, int k) {
- PriorityQueue<Integer> q = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
-        helper(root,k,q);
-        return q.poll();
-
+        ArrayList<Integer> l = new ArrayList<>();
+        helper(root,k,l);
+        return l.get(k-1);
     }
 }
