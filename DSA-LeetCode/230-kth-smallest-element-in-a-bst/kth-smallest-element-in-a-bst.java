@@ -1,15 +1,17 @@
 
 class Solution {
-    public void helper(TreeNode root , int k , ArrayList<Integer> l ){
-        if(root==null)return;
-        if(l.size() ==k)return;
-        helper(root.left,k,l);
-        l.add(root.val);
-        helper(root.right,k,l);
-    }
     public int kthSmallest(TreeNode root, int k) {
-        ArrayList<Integer> l = new ArrayList<>();
-        helper(root,k,l);
-        return l.get(k-1);
+        return kthSmallest(root,new int[]{k});
+    }
+        public int kthSmallest(TreeNode root, int k[]) {
+        
+        if(root==null)return Integer.MAX_VALUE;
+        int l=kthSmallest(root.left,k);
+        k[0]--;
+        if(k[0]==0)return root.val;
+        int r=kthSmallest(root.right,k);
+      
+        return Math.min(l,r);
+        
     }
 }
